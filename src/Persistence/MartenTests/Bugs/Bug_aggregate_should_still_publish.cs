@@ -35,7 +35,7 @@ public abstract class Bug_aggregate_should_still_publish : PostgresqlContext, IA
                 opts.Policies.AutoApplyTransactions();
 
                 opts.Discovery.DisableConventionalDiscovery()
-                    .IncludeType(typeof(AggregateHandler))
+                    .IncludeType(typeof(SomeHandler))
                     .IncludeType(typeof(SomeOtherHandler));
 
                 opts.Services.AddMarten(m =>
@@ -118,7 +118,7 @@ public record ScheduleSomethingUsingAggregate(Guid Id);
 
 public record SomethingWasScheduled(Guid Id);
 
-public static class AggregateHandler
+public static class SomeHandler
 {
     public static SomethingWasScheduled Handle(
         ScheduleSomethingUsingAggregate command,
